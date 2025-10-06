@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/chart";
 import type { IStandardTradingAccount } from "@/lib/types/Account";
 import { cn, timestampToDate } from "@/lib/utils";
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -35,11 +35,18 @@ export const StandardTradingAccount = memo(
   ({ account }: StandardTradingAccountProps) => {
     const [isActivated, setIsActivated] = useState(!account.demo);
 
+    const getHeaderStyle = useCallback(() => {
+      if (!isActivated)
+        return "bg-deactivated-trading-account-header shadow-deactivated-trading-account-header";
+      if (account.demo) return "bg-demo-trading-account-header";
+      return "bg-standard-trading-account-header";
+    }, [isActivated, account.demo]);
+
     return (
       <Card className="flex-1">
-        <CardHeader>
-          <CardTitle>{account.id}</CardTitle>
-          <CardDescription>
+        <CardHeader className={cn(getHeaderStyle(), "shadow-sm transition")}>
+          <CardTitle className="text-white text-lg">{account.id}</CardTitle>
+          <CardDescription className="text-white/70">
             {account.demo ? "Demo Account" : "Real Account"}
           </CardDescription>
           <CardAction>

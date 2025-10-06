@@ -118,3 +118,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+@theme {
+  --color-app-trading-account-bg: #6e78ff;
+  --color-standard-trading-account-header: #5b52fa;
+  --color-demo-trading-account-header: #6ecaff;
+  --color-deactivated-trading-account-header: #9b52fa;
+}

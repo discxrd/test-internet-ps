@@ -38,8 +38,9 @@ export const StandardTradingAccount = memo(
     const getHeaderStyle = useCallback(() => {
       if (!isActivated)
         return "bg-deactivated-trading-account-header shadow-deactivated-trading-account-header";
-      if (account.demo) return "bg-demo-trading-account-header";
-      return "bg-standard-trading-account-header";
+      if (account.demo)
+        return "bg-demo-trading-account-header shadow-demo-trading-account-header";
+      return "bg-standard-trading-account-header shadow-standard-trading-account-header";
     }, [isActivated, account.demo]);
 
     return (
